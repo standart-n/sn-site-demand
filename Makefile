@@ -54,7 +54,7 @@ jade-tpl:
 
 coffee-js:
 	@echo "\ncoffee...\n"
-	@coffee -cbjvp ./script/sn*.coffee > ./public/js/client/sn.js
+	@coffee -cbjvp ./client/sn*.coffee > ./public/js/client/sn.js
 
 main-css:
 	@cat ./public/css/bootstrap.css ./public/css/bootstrap-responsive.css ./public/css/sn.css > ./public/css/style.css
