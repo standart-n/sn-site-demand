@@ -7,6 +7,8 @@ jade = require('jade');
 
 global.controls = require('./public/js/controls');
 
+global.dbsettings = require('./conf/database.json');
+
 routes = require('./public/js/routes');
 
 http = require('http');

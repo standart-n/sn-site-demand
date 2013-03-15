@@ -1,4 +1,4 @@
-
+TPL=smarty
 DATE=$(shell date +%I:%M%p)
 CHECK=\033[32m✔\033[39m
 HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
@@ -12,103 +12,68 @@ def: all
 
 all: folders client server finish
 
-client: coffee-js js css img jade-tpl ajaxloader
+client: js css layout indexhtml
 
-server: app controls-js routes-js
+server: node-app node-controls node-routes
 
-sn: sn-css main-css coffee-js sn-js lmd
+js: client-js main-js lmd
 
-bs: bs-css main-css bs-js bs-img lmd
+css: client-css all-css
 
-js: coffee-js sn-js bs-js lmd
+bootstrap: bs-img bs-css bs-js
 
-css: sn-css bs-css main-css
+folders: folders-public folders-tpl
 
-img: bs-img
-
-check-js:
-	@echo "\nrunning JSHint on javascript...\n"
-	@mkdir -p ./js-tmp/
-	@cp ./public/js/client/sn.js ./js-tmp/sn.js
-	@cp ./public/js/client/main.js ./js-tmp/main.js
-	@jshint ./js-tmp/*.js --config ./.jshintrc
-	@rm -R ./js-tmp/
-
-	@echo "\nbs: running JSHint on javascript...\n"
-	@jshint ./bootstrap/js/*.js --config ./bootstrap/js/.jshintrc
-
-ajaxloader:
-	@echo "\najaxloader...\n"
-	@cat ./tpl/templates/index.html > ./index.html
+indexhtml:
+	@rm -f ./index.html
+	@jade --pretty ./layout/${TPL}/index.jade -O ./
 
 lmd:
-	@echo "\nlmd...\n"
+	@echo "\n lmd... \n"
 	@lmd build dev
 
-jade-tpl:
-	@echo "\njade...\n"
+layout:
 	@rm -R ./tpl/templates/
 	@mkdir -p ./tpl/templates/
 	@touch ./tpl/templates/.gitignore
-	@jade --pretty ./jade/smarty/ -O ./tpl/templates
+	@jade --pretty ./layout/${TPL}/ -O ./tpl/templates
 
-coffee-js:
-	@echo "\ncoffee...\n"
+client-js:
 	@coffee -cbjvp ./client/sn*.coffee > ./public/js/client/sn.js
+	@uglifyjs ./public/js/client/sn.js -nc > ./public/js/client/sn.min.js
 
-main-css:
-	@cat ./public/css/bootstrap.css ./public/css/bootstrap-responsive.css ./public/css/sn.css > ./public/css/style.css
-	@cat ./public/css/bootstrap.min.css ./public/css/bootstrap-responsive.min.css ./public/css/sn.min.css > ./public/css/style.min.css
+main-js:
+	@coffee -cbjvp ./script/main*.coffee > ./public/js/client/main.js
+	@uglifyjs ./public/js/client/main.js -nc > ./public/js/client/main.min.js
 
-sn-css:
-	@echo "\nsn: compiling LESS with Recess\n"
+
+
+client-css:
 	@recess --compile ./less/sn.less > ./public/css/sn.css
 	@recess --compress ./less/sn.less > ./public/css/sn.min.css
 
-sn-js:
-	@echo "\nsn: compiling and minifying javascript...\n"
-	@coffee -cbjvp ./script/main*.coffee > ./public/js/client/main.js
-
-	@echo "\nsn: uglifyjs...\n"
-	@uglifyjs ./public/js/client/sn.js -nc > ./public/js/client/sn.min.js
-	@uglifyjs ./public/js/client/main.js -nc > ./public/js/client/main.min.js
-
-bs-img:
-	@cp ./bootstrap/img/* ./public/img/
-
-bs-css:
-	@echo "\nbs: compiling LESS with Recess...\n"
-	@recess --compile ./bootstrap/less/bootstrap.less > ./public/css/bootstrap.css
-	@recess --compress ./bootstrap/less/bootstrap.less > ./public/css/bootstrap.min.css
-	@recess --compile ./bootstrap/less/responsive.less > ./public/css/bootstrap-responsive.css
-	@recess --compress ./bootstrap/less/responsive.less > ./public/css/bootstrap-responsive.min.css
-
-bs-js:
-	@echo "bs: compiling and minifying javascript...\n"
-	@cat ./bootstrap/js/bootstrap-*.js  > ./public/js/client/bootstrap.js
-	@uglifyjs ./public/js/client/bootstrap.js -nc > ./public/js/client/bootstrap.min.tmp.js
-
-	@echo "/**\n* bootstrap.js v2.2.2 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > ./bootstrap/copyright
-	@cat ./bootstrap/copyright ./public/js/client/bootstrap.min.tmp.js > ./public/js/client/bootstrap.min.js
-	@rm ./bootstrap/copyright ./public/js/client/bootstrap.min.tmp.js
+all-css:
+	@cat ./public/css/*.min.css > ./public/assets/style.css
 
 
 
-controls-js:
-	@echo "\ncontrols...\n"
+node-app:
+	@echo "\n app... \n"
+	@coffee -cbjvp ./script/app*.coffee > ./app
+
+node-controls:
+	@echo "\n controls... \n"
 	@rm -fR ./public/js/controls
 	@mkdir -p ./public/js/controls
 	@coffee -o ./public/js/controls -cb ./node_controls/
 
-routes-js:
-	@echo "\nroutes...\n"
+node-routes:
+	@echo "\n routes... \n"
 	@rm -fR ./public/js/routes
 	@mkdir -p ./public/js/routes
 	@coffee -o ./public/js/routes -cb ./node_routes/
 
-app:
-	@echo "\napp...\n"
-	@coffee -cbjvp ./script/app*.coffee > ./app
+
 
 start:
 	@echo "forever start -o ./log/out.log -e ./log/err.log app"
@@ -119,11 +84,14 @@ stop:
 	@forever stop app
 
 
-folders:
+folders-tpl:
 	@mkdir -p ./tpl/cache
 	@mkdir -p ./tpl/configs
 	@mkdir -p ./tpl/templates
 	@mkdir -p ./tpl/templates_c
+
+folders-public:
+	@mkdir -p ./public/assets
 	@mkdir -p ./public/img
 	@mkdir -p ./public/css
 	@mkdir -p ./public/materials
@@ -135,6 +103,28 @@ folders:
 	
 finish:
 	@echo "\nSuccessfully built at ${DATE}."
+
+
+
+
+bs-img:
+	@cp ./bootstrap/img/* ./public/img/
+
+bs-css:
+	@recess --compile ./bootstrap/less/bootstrap.less > ./public/css/bootstrap.css
+	@recess --compress ./bootstrap/less/bootstrap.less > ./public/css/bootstrap.min.css
+	@recess --compile ./bootstrap/less/responsive.less > ./public/css/bootstrap-responsive.css
+	@recess --compress ./bootstrap/less/responsive.less > ./public/css/bootstrap-responsive.min.css
+
+bs-js:
+	@cat ./bootstrap/js/bootstrap-*.js  > ./public/js/client/bootstrap.js
+	@uglifyjs ./public/js/client/bootstrap.js -nc > ./public/js/client/bootstrap.min.tmp.js
+
+	@echo "/**\n* bootstrap.js v2.2.2 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > ./bootstrap/copyright
+	@cat ./bootstrap/copyright ./public/js/client/bootstrap.min.tmp.js > ./public/js/client/bootstrap.min.js
+	@rm ./bootstrap/copyright ./public/js/client/bootstrap.min.tmp.js
+
+
 
 #
 # RUN JSHINT & QUNIT TESTS IN PHANTOMJS
