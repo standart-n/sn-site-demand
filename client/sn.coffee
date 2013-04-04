@@ -1,7 +1,6 @@
 $ ->
-	methods= 
-		init:(options) ->
-			options={} if !options
+	methods = 
+		init: (options = {}) ->
 			def=
 				content:{}
 				result:
@@ -11,8 +10,7 @@ $ ->
 			$(@).snTriggers()
 			$(@).snEvents 'href':'#autoload'
 
-	$.fn.sn= (sn) ->
-		sn={} if !sn
+	$.fn.sn = (sn = {}) ->
 		if methods[sn] 
 			methods[sn].apply @,Array.prototype.slice.call arguments,1
 		else 

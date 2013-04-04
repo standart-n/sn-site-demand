@@ -1,8 +1,3 @@
-/conf
-/log
-/public
-/tpl
-
 # Numerous always-ignore extensions
 *.diff
 *.err
@@ -40,3 +35,8 @@ nbproject
 .idea
 node_modules
 dist
+conf
+log
+templates_c
+cache
+materials

@@ -15,31 +15,44 @@
     <!-- meta(name = "viewport", content = "user-scalable=no")-->
     <link href="favicon.ico" rel="icon" type="image/x-icon">
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <link href="public/assets/style.css" rel="stylesheet" type="text/css"><!--[if lt IE 9]
+    <link href="style/style.css" rel="stylesheet" type="text/css"><!--[if lt IE 9]
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
   </head>
   <body>
-    <div id="sn"></div>
-    <div id="main">			
-      <div id="text">
-        <div class="container">
-          <div class="row">
-            <div class="span12">
-              <div class="well">
-                <h4>Стандарт-Н</h4>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div id="sn"></div><a id="push-demand" href="#">Сделать заявку</a>
+    <div id="modal-demand" class="modal">
+      <div class="modal-header"><a href="#" class="close">&times;</a>
+        <h3>Сделать заявку</h3>
       </div>
-      <div id="signin"></div>
-      <div id="controls"></div>
-      <div id="table"></div>
-      <div id="pagination"></div>
-      <div id="stat"></div>
+      <div class="modal-body">
+        <p>
+           
+          Если Вас заинтересовали наши разработки, Вы можете оставить заявку, указав Вашу контактную информацию, и в ближайшее время наши специалисты свяжутся с Вами.
+        </p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr>
+            <td> 
+              <div class="modal-label">Ваше имя:</div>
+            </td>
+            <td> 
+              <input type="text" placeholder="Ваше имя">
+            </td>
+          </tr>
+          <tr>
+            <td> 
+              <div class="modal-label">Ваш телефон:</div>
+            </td>
+            <td> 
+              <input type="text" placeholder="Ваш телефон">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer"><a id="modal-close" href="#" class="modal-btn">Закрыть</a><a id="modal-send" href="#" class="modal-btn">Отправить</a></div>
     </div>
+    <div id="main"></div>
     <div id="js">
-      <script src="public/assets/client.js" type="text/javascript"></script>
+      <script src="client.js" type="text/javascript"></script>
     </div>
   </body>
 </html>

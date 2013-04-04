@@ -1,12 +1,11 @@
 {
 	"name": "dev build",
 	"root": "../",
-	"output": "/public/assets/client.js",
+	"output": "/client.js",
 	"modules": {
 		"main": "/public/js/client/main.min.js",
 		"jquery": "lib/js/jQuery.1.8.3.min.js",
-		"sn": "/public/js/client/sn.min.js",
-		"bootstrap": "/public/js/client/bootstrap.min.js"
+		"sn": "/public/js/client/sn.min.js"
 	},
 	"main":"main",
 	"global":"this",

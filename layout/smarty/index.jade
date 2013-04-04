@@ -15,26 +15,46 @@ html
 		// meta(name = "viewport", content = "user-scalable=no")
 		link(href = "favicon.ico", rel = "icon", type = "image/x-icon")
 		link(href = "favicon.ico", rel = "shortcut icon", type = "image/x-icon")
-		link(href = "public/assets/style.css", rel = "stylesheet", type = "text/css")
+		link(href = "style/style.css", rel = "stylesheet", type = "text/css")
 		//[if lt IE 9]
 			script(src = "http://html5shim.googlecode.com/svn/trunk/html5.js")
 	body
 		#sn
-		#main			
-			#text
-				.container
-					.row
-						.span12
-							.well
-								h4 Стандарт-Н
-			#signin
-			#controls
-			#table
-			#pagination
-			#stat
+		
+		a#push-demand(href = "#") Сделать заявку
+		
+		#modal-demand.modal
+			.modal-header
+				a.close(href = "#") &times;
+				h3 Сделать заявку
+			
+			.modal-body
+				p 
+					Если Вас заинтересовали наши разработки, Вы можете оставить заявку, указав Вашу контактную информацию, и в ближайшее время наши специалисты свяжутся с Вами.
+				table(border = "0", cellpadding = "2", cellspacing = "0")
+					tr
+						td 
+							.modal-label Ваше имя:
+						td 
+							input(type = "text", placeholder = "Ваше имя")
+					tr
+						td 
+							.modal-label Ваш телефон:
+						td 
+							input(type = "text", placeholder = "Ваш телефон")
+
+
+			
+			.modal-footer
+				a#modal-close.modal-btn(href = "#") Закрыть
+				a#modal-send.modal-btn(href = "#") Отправить
+
+		#main
+
+
 
 		#js
-			script(src = "public/assets/client.js", type = "text/javascript")
+			script(src = "client.js", type = "text/javascript")
 
 
 

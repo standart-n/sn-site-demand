@@ -1,0 +1,147 @@
+
+@demandWidth: 400px;
+
+#push-demand {
+	position: absolute;
+	top: 40px;
+	left: 50%;
+	display: block;
+	float: left;
+	margin-left: -100px;
+	#font > .sans-serif();
+	color:#111;
+	padding:5px 15px 6px 15px;
+	#gradient > .vertical(#cdeb8e,#a5c956);
+	.box-shadow(0 0 2px #444);
+	.border-radius(5px);
+	border:#369100 solid 1px;
+	text-decoration:none;
+
+	&:hover{
+		color:#333;
+		#gradient > .vertical(#cdeb8b,#cdeb8b);
+	}
+}
+
+
+.modal {
+	position: absolute;
+	display: block;
+	float: left;
+	top:50%;
+	left: 50%;
+	margin-top: -200px;
+	margin-left: -@demandWidth/2;
+	background: @white;
+	.border-radius(5px 5px 5px 5px);
+	border:#999 solid 1px;
+	.box-shadow(0 0 2px @grayLight);
+
+
+	.modal-header {
+		display: block;
+		float: left;
+		width: @demandWidth;
+		clear: both;
+		padding: 10px 10px 10px 10px;
+		.border-radius(5px 5px 0 0);
+		background: #fcfcfc;
+
+		h3 {
+			font-family: Verdana, "Times New Roman";
+			font-size: 22px;
+			font-weight: normal;
+			color: @grayDark;
+			padding: 0;
+			margin: 0;
+		}
+
+		.close {
+			float: right;
+			font-size: 18px;
+			font-weight: bold;
+			line-height: @baseLineHeight;
+			color: @black;
+			text-shadow: 0 1px 0 rgba(255,255,255,1);
+			text-decoration: none;
+			.opacity(20);
+
+			&:hover {
+				color: @black;
+				cursor: pointer;
+				.opacity(40);
+			}
+		}
+
+	}
+
+	.modal-body {
+		display: block;
+		float: left;
+		width: @demandWidth;
+		clear: both;
+		padding: 10px 10px 15px 10px;
+		border-top: #ccc solid 1px;
+		border-bottom: #ccc solid 1px;
+
+		p {
+			font-family: @sansFontFamily;
+			font-size: 14px;
+			font-weight: normal;
+			color: @grayDarker;
+			padding: 0;
+			margin: 0 0 10px 0;
+		}
+
+		.modal-label {
+			#font > .sans-serif();
+			color: @grayDarker;
+			padding: 0 5px 5px 0;
+		}
+	}
+
+	.modal-footer {
+		display: block;
+		float: left;
+		width:@demandWidth;
+		clear: both;
+		padding: 10px 10px 10px 10px;
+		border-top: #fff solid 1px;
+		background: @grayLighter;
+		.border-radius(0 0 5px 5px);
+
+		.modal-btn {
+			display: block;
+			float: right;
+			#font > .sans-serif();
+			color: @grayDark;
+			padding: 5px 15px 6px 15px;
+			margin: 5px 5px 5px 5px;
+			text-decoration: none;
+			#gradient > .vertical(#fff,#ededed);
+			.border-radius(5px 5px 5px 5px);
+			border: @grayLight 1px solid;
+			.box-shadow(0 0 2px @grayLight);
+			outline: none;
+
+			&:hover {
+				color: @gray;
+				background: @grayLighter;
+			}
+
+		}
+
+		#modal-send {
+			color: @white;
+			#gradient > .vertical(@blue,@blueDark);
+			border: @gray 1px solid;
+
+			&:hover{
+				color: @grayLighter;
+				background: @blueDark;
+			}
+		}
+
+	}
+
+}

@@ -10,17 +10,13 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 
 def: all
 
-all: folders client server finish
+all: folders client finish
 
 client: js css layout indexhtml
-
-server: node-app node-controls node-routes
 
 js: client-js main-js lmd
 
 css: client-css all-css
-
-bootstrap: bs-img bs-css bs-js
 
 folders: folders-public folders-tpl
 
@@ -53,35 +49,9 @@ client-css:
 	@recess --compress ./less/sn.less > ./public/css/sn.min.css
 
 all-css:
-	@cat ./public/css/*.min.css > ./public/assets/style.css
+	@cat ./public/css/*.min.css > ./style/style.css
 
 
-
-node-app:
-	@echo "\n app... \n"
-	@coffee -cbjvp ./script/app*.coffee > ./app
-
-node-controls:
-	@echo "\n controls... \n"
-	@rm -fR ./public/js/controls
-	@mkdir -p ./public/js/controls
-	@coffee -o ./public/js/controls -cb ./node_controls/
-
-node-routes:
-	@echo "\n routes... \n"
-	@rm -fR ./public/js/routes
-	@mkdir -p ./public/js/routes
-	@coffee -o ./public/js/routes -cb ./node_routes/
-
-
-
-start:
-	@echo "forever start -o ./log/out.log -e ./log/err.log app"
-	@forever start -o ./log/out.log -e ./log/err.log app
-
-stop:
-	@echo "stop app"
-	@forever stop app
 
 
 folders-tpl:
@@ -104,25 +74,6 @@ folders-public:
 finish:
 	@echo "\nSuccessfully built at ${DATE}."
 
-
-
-
-bs-img:
-	@cp ./bootstrap/img/* ./public/img/
-
-bs-css:
-	@recess --compile ./bootstrap/less/bootstrap.less > ./public/css/bootstrap.css
-	@recess --compress ./bootstrap/less/bootstrap.less > ./public/css/bootstrap.min.css
-	@recess --compile ./bootstrap/less/responsive.less > ./public/css/bootstrap-responsive.css
-	@recess --compress ./bootstrap/less/responsive.less > ./public/css/bootstrap-responsive.min.css
-
-bs-js:
-	@cat ./bootstrap/js/bootstrap-*.js  > ./public/js/client/bootstrap.js
-	@uglifyjs ./public/js/client/bootstrap.js -nc > ./public/js/client/bootstrap.min.tmp.js
-
-	@echo "/**\n* bootstrap.js v2.2.2 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > ./bootstrap/copyright
-	@cat ./bootstrap/copyright ./public/js/client/bootstrap.min.tmp.js > ./public/js/client/bootstrap.min.js
-	@rm ./bootstrap/copyright ./public/js/client/bootstrap.min.tmp.js
 
 
 
