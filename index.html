@@ -20,6 +20,7 @@
   </head>
   <body>
     <div id="sn"></div><a id="push-demand" href="#">Сделать заявку</a>
+    <div id="wall-demand"></div>
     <div id="modal-demand" class="modal">
       <div class="modal-header"><a href="#" class="close">&times;</a>
         <h3>Сделать заявку</h3>
@@ -82,8 +83,12 @@
             <td></td>
           </tr>
         </table>
-        <p class="demand-success">Ваша заявка успешно отправлена!</p>
-        <p class="demand-error">Ошибка. Возможно, Вы неверно заполнили некоторые поля!</p>
+        <div class="demand-success">
+          <p>Ваша заявка успешно отправлена!</p>
+        </div>
+        <div class="demand-error">
+          <p>Ошибка. Возможно, Вы неверно заполнили некоторые поля!</p>
+        </div>
       </div>
       <div class="modal-footer"><a id="modal-close" href="#" class="modal-btn">Закрыть</a><a id="modal-send" href="#" class="modal-btn">Отправить</a></div>
     </div>

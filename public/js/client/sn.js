@@ -32,22 +32,29 @@ $(function() {
         return _this.snDemand('checkPhone', $(this).val());
       });
       $('#push-demand').live('click', function() {
+        $('#wall-demand').show().css({
+          width: $(document).width(),
+          height: $(document).height()
+        });
         return $('#modal-demand').show();
       });
       $('.modal-header a.close').live('click', function() {
+        $('#wall-demand').hide();
         return $('#modal-demand').hide();
       });
       $('#modal-close').live('click', function() {
+        $('#wall-demand').hide();
         return $('#modal-demand').hide();
       });
       return $('#modal-send').live('click', function() {
         if ($(this).snDemand('check')) {
-          $('.demand-success').show();
-          $('.demand-error').hide();
+          $('.demand-success p').show();
+          $('.demand-error p').hide();
+          $('#modal-send').hide();
           return _this.snDemand('send');
         } else {
-          $('.demand-success').hide();
-          return $('.demand-error').show();
+          $('.demand-success p').hide();
+          return $('.demand-error p').show();
         }
       });
     },
@@ -81,7 +88,7 @@ $(function() {
       var sn;
       sn = $(this).data('sn');
       return $.ajax({
-        url: 'http://www.standart-n.ru/api/js/deGetClaim.js',
+        url: 'http://www.standart-n.ru/external/ajax_claim.php',
         type: 'GET',
         data: {
           act: 'add',
@@ -182,7 +189,7 @@ $(function() {
       if (phone.length < 5 || phone.length > 30) {
         flag = false;
       }
-      if (!/\+?\d{1,3}(?:\s*\(\d+\)\s*)?(?:(?:\-\d{1,3})+\d|[\d\-]{6,}|(?:\s\d{1,3})+\d)/i.test(phone)) {
+      if (!/\+?\d{1,3}(?:\s*\(\d+\)\s*)?(?:(?:\-\d{1,3})+\d|[\d\-]{4,}|(?:\s\d{1,3})+\d)/i.test(phone)) {
         flag = false;
       }
       return flag;

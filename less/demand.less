@@ -16,7 +16,8 @@
 	.border-radius(5px);
 	border:#369100 solid 1px;
 	text-decoration:none;
-	z-index: 1000;
+	z-index: 1001;
+	outline: none;
 
 	&:hover{
 		color:#333;
@@ -24,6 +25,18 @@
 	}
 }
 
+#wall-demand {	
+	position: absolute;
+	display: none;
+	float: left;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	.opacity(80);
+	background: @grayDarker;
+	z-index: 1002;
+}
 
 #modal-demand {
 	position: absolute;
@@ -31,13 +44,13 @@
 	float: left;
 	top:50%;
 	left: 50%;
-	margin-top: -230px;
+	margin-top: -250px;
 	margin-left: -@demandWidth/2;
 	background: @white;
 	.border-radius(5px 5px 5px 5px);
 	border:#999 solid 1px;
 	.box-shadow(0 0 2px @grayLight);
-	z-index: 1000;
+	z-index: 1003;
 
 
 	.modal-header {
@@ -94,17 +107,18 @@
 			padding: 0;
 			margin: 0 0 10px 0;
 
-			&.demand-success {
-				display:none;
-				color: @green;
-			}
-
-			&.demand-error {
-				display:none;
-				color: @red;
-			}
-
 		}
+
+		.demand-success p {
+			display:none;
+			color: @green;
+		}
+
+		.demand-error p {
+			display:none;
+			color: @red;
+		}
+
 
 		.modal-label {
 			#font > .sans-serif();

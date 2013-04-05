@@ -1594,7 +1594,7 @@ legend + .control-group {
   position: absolute;
   top: 13px;
   left: 50%;
-  z-index: 1000;
+  z-index: 1001;
   display: block;
   float: left;
   padding: 5px 15px 6px 15px;
@@ -1616,6 +1616,7 @@ legend + .control-group {
   -webkit-border-radius: 5px;
      -moz-border-radius: 5px;
           border-radius: 5px;
+  outline: none;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffcdeb8e', endColorstr='#ffa5c956', GradientType=0);
   -webkit-box-shadow: 0 0 2px #444444;
      -moz-box-shadow: 0 0 2px #444444;
@@ -1634,14 +1635,28 @@ legend + .control-group {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffcdeb8b', endColorstr='#ffcdeb8b', GradientType=0);
 }
 
+#wall-demand {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1002;
+  display: none;
+  float: left;
+  width: 100%;
+  height: 100%;
+  background: #222222;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
 #modal-demand {
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 1000;
+  z-index: 1003;
   display: none;
   float: left;
-  margin-top: -230px;
+  margin-top: -250px;
   margin-left: -200px;
   background: #ffffff;
   border: #999 solid 1px;
@@ -1712,12 +1727,12 @@ legend + .control-group {
   color: #222222;
 }
 
-#modal-demand .modal-body p.demand-success {
+#modal-demand .modal-body .demand-success p {
   display: none;
   color: #46a546;
 }
 
-#modal-demand .modal-body p.demand-error {
+#modal-demand .modal-body .demand-error p {
   display: none;
   color: #9d261d;
 }
