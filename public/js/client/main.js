@@ -5,6 +5,6 @@ if (typeof window !== "undefined") {
   jq = require("jquery");
   sn = require("sn");
   $(function() {
-    return $("#sn").sn();
+    return $("#sn").snDemand();
   });
 }

@@ -36,13 +36,55 @@ html
 						td 
 							.modal-label Ваше имя:
 						td 
-							input(type = "text", placeholder = "Ваше имя")
+							input#demand-name(type = "text", placeholder = "Ваше имя")
+						td 
+							#validate-name
+								.validate-true
+									&nbsp;
+									i.icon-ok
+								.validate-false
+									&nbsp;
+									i.icon-remove
+
 					tr
 						td 
 							.modal-label Ваш телефон:
 						td 
-							input(type = "text", placeholder = "Ваш телефон")
+							input#demand-phone(type = "text", placeholder = "Ваш телефон")
+						td 
+							#validate-phone
+								.validate-true
+									&nbsp;
+									i.icon-ok
+								.validate-false
+									&nbsp;
+									i.icon-remove
 
+					tr
+						td(colspan = "3")
+							.modal-label-small Дополнительные поля:
+
+
+					tr
+						td 
+							.modal-label E-mail:
+						td 
+							input#demand-email(type = "text", placeholder = "Адрес эл. почты")
+						td 
+
+					tr
+						td 
+							.modal-label Комментарий:
+						td 
+							textarea#demand-comment
+						td
+
+
+				p.demand-success
+					Ваша заявка успешно отправлена!
+
+				p.demand-error
+					Ошибка. Возможно, Вы неверно заполнили некоторые поля!
 
 			
 			.modal-footer

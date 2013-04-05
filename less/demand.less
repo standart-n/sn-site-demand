@@ -3,7 +3,7 @@
 
 #push-demand {
 	position: absolute;
-	top: 40px;
+	top: 13px;
 	left: 50%;
 	display: block;
 	float: left;
@@ -16,6 +16,7 @@
 	.border-radius(5px);
 	border:#369100 solid 1px;
 	text-decoration:none;
+	z-index: 1000;
 
 	&:hover{
 		color:#333;
@@ -24,18 +25,19 @@
 }
 
 
-.modal {
+#modal-demand {
 	position: absolute;
-	display: block;
+	display: none;
 	float: left;
 	top:50%;
 	left: 50%;
-	margin-top: -200px;
+	margin-top: -230px;
 	margin-left: -@demandWidth/2;
 	background: @white;
 	.border-radius(5px 5px 5px 5px);
 	border:#999 solid 1px;
 	.box-shadow(0 0 2px @grayLight);
+	z-index: 1000;
 
 
 	.modal-header {
@@ -91,6 +93,17 @@
 			color: @grayDarker;
 			padding: 0;
 			margin: 0 0 10px 0;
+
+			&.demand-success {
+				display:none;
+				color: @green;
+			}
+
+			&.demand-error {
+				display:none;
+				color: @red;
+			}
+
 		}
 
 		.modal-label {
@@ -98,6 +111,14 @@
 			color: @grayDarker;
 			padding: 0 5px 5px 0;
 		}
+
+		.modal-label-small {
+			font-family: Verdana, Times New Roman;
+			font-size: 12px;
+			color: @gray;
+			padding: 0 5px 5px 0;
+		}
+
 	}
 
 	.modal-footer {
@@ -142,6 +163,15 @@
 			}
 		}
 
+	}
+
+
+	.validate-true {
+		display:none;
+	}
+
+	.validate-false {
+		display:none;
 	}
 
 }

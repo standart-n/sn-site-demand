@@ -3,4 +3,4 @@
 		jq = require "jquery"
 		sn = require "sn"
 		$ () ->
-			$("#sn").sn()
+			$("#sn").snDemand()

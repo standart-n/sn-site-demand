@@ -35,7 +35,13 @@
               <div class="modal-label">Ваше имя:</div>
             </td>
             <td> 
-              <input type="text" placeholder="Ваше имя">
+              <input id="demand-name" type="text" placeholder="Ваше имя">
+            </td>
+            <td> 
+              <div id="validate-name">
+                <div class="validate-true">&nbsp;<i class="icon-ok"></i></div>
+                <div class="validate-false">&nbsp;<i class="icon-remove"></i></div>
+              </div>
             </td>
           </tr>
           <tr>
@@ -43,10 +49,41 @@
               <div class="modal-label">Ваш телефон:</div>
             </td>
             <td> 
-              <input type="text" placeholder="Ваш телефон">
+              <input id="demand-phone" type="text" placeholder="Ваш телефон">
+            </td>
+            <td> 
+              <div id="validate-phone">
+                <div class="validate-true">&nbsp;<i class="icon-ok"></i></div>
+                <div class="validate-false">&nbsp;<i class="icon-remove"></i></div>
+              </div>
             </td>
           </tr>
+          <tr>
+            <td colspan="3">
+              <div class="modal-label-small">Дополнительные поля:</div>
+            </td>
+          </tr>
+          <tr>
+            <td> 
+              <div class="modal-label">E-mail:</div>
+            </td>
+            <td> 
+              <input id="demand-email" type="text" placeholder="Адрес эл. почты">
+            </td>
+            <td> </td>
+          </tr>
+          <tr>
+            <td> 
+              <div class="modal-label">Комментарий:</div>
+            </td>
+            <td> 
+              <textarea id="demand-comment"></textarea>
+            </td>
+            <td></td>
+          </tr>
         </table>
+        <p class="demand-success">Ваша заявка успешно отправлена!</p>
+        <p class="demand-error">Ошибка. Возможно, Вы неверно заполнили некоторые поля!</p>
       </div>
       <div class="modal-footer"><a id="modal-close" href="#" class="modal-btn">Закрыть</a><a id="modal-send" href="#" class="modal-btn">Отправить</a></div>
     </div>
