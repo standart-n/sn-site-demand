@@ -17,48 +17,48 @@ $ ->
 
 			_this = $(this)
 
-			$(this).snDemand 'geoIp'
+			$(this).snOpinion 'geoIp'
 
-			$('#demand-name').live 'keyup', () ->
-				_this.snDemand 'checkName', $(this).val()
+			$('#opinion-name').live 'keyup', () ->
+				_this.snOpinion 'checkName', $(this).val()
 
-			$('#demand-phone').live 'keyup', () ->
-				_this.snDemand 'checkPhone', $(this).val()
+			$('#opinion-phone').live 'keyup', () ->
+				_this.snOpinion 'checkPhone', $(this).val()
 
-			$('#push-demand').live 'click', () ->
-				$('#wall-demand')
+			$('#push-opinion').live 'click', () ->
+				$('#wall-opinion')
 					.show()
 					.css(
 						width: $(document).width()
 						height: $(document).height()
 						)
-				$('#modal-demand').show()
+				$('#modal-opinion').show()
 
 			$('.modal-header a.close').live 'click', () ->
-				$('#wall-demand').hide()
-				$('#modal-demand').hide()
+				$('#wall-opinion').hide()
+				$('#modal-opinion').hide()
 
 			$('#modal-close').live 'click', () ->
-				$('#wall-demand').hide()
-				$('#modal-demand').hide()
+				$('#wall-opinion').hide()
+				$('#modal-opinion').hide()
 
 			$('#modal-send').live 'click', () ->
-				if $(this).snDemand('check')
-					$('.demand-success p').show()
-					$('.demand-error p').hide()
+				if $(this).snOpinion('check')
+					$('.opinion-success p').show()
+					$('.opinion-error p').hide()
 
 					$('#modal-send').hide()
-					_this.snDemand 'send'
+					_this.snOpinion 'send'
 				else
-					$('.demand-success p').hide()
-					$('.demand-error p').show()
+					$('.opinion-success p').hide()
+					$('.opinion-error p').show()
 
 
 		send: () ->
 			sn = $(this).data 'sn'
 
-			$(this).snDemand 'addToBase'
-			$(this).snDemand 'addToGit'
+			$(this).snOpinion 'addToBase'
+			$(this).snOpinion 'addToGit'
 
 
 		geoIp: () ->
@@ -89,10 +89,10 @@ $ ->
 				type:'GET'
 				data:
 					act:'add'
-					name:$('#demand-name').val()
-					tel:$('#demand-phone').val()
-					email:$('#demand-email').val()
-					comment:$('#demand-comment').val()
+					name:$('#opinion-name').val()
+					tel:$('#opinion-phone').val()
+					email:$('#opinion-email').val()
+					comment:$('#opinion-comment').val()
 					skype:''
 					icq:''
 					site:''
@@ -109,11 +109,11 @@ $ ->
 			sn = $(this).data 'sn'
 
 			message = '' +
-				$('#demand-name').val() + ' ' +
-				$('#demand-phone').val() + ' ' +
-				$('#demand-email').val() + ' ' +
+				$('#opinion-name').val() + ' ' +
+				$('#opinion-phone').val() + ' ' +
+				$('#opinion-email').val() + ' ' +
 				sn.geo.city + ' ' +
-				$('#demand-comment').val() + ' '
+				$('#opinion-comment').val() + ' '
 
 			$.ajax
 				url: 'http://git.st-n.ru/'
@@ -128,12 +128,12 @@ $ ->
 
 		check: () ->
 			
-			$(this).snDemand('checkName',$('#demand-name').val()) && $(this).snDemand('checkPhone',$('#demand-phone').val())
+			$(this).snOpinion('checkName',$('#opinion-name').val()) && $(this).snOpinion('checkPhone',$('#opinion-phone').val())
 
 
 
 		checkName: (val = '') ->
-			flag = $(this).snDemand 'flagName', val
+			flag = $(this).snOpinion 'flagName', val
 
 			if flag
 				$('#validate-name .validate-true').show()
@@ -145,7 +145,7 @@ $ ->
 			flag
 
 		checkPhone: (val = '') ->
-			flag = $(this).snDemand 'flagPhone', val
+			flag = $(this).snOpinion 'flagPhone', val
 
 			if flag
 				$('#validate-phone .validate-true').show()
@@ -192,7 +192,7 @@ $ ->
 
 
 
-	$.fn.snDemand = (sn = {}) ->
+	$.fn.snOpinion = (sn = {}) ->
 		if methods[sn] 
 			methods[sn].apply @,Array.prototype.slice.call arguments,1
 		else 
